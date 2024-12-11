@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxmfaxri2jfcx"]
+
+[ext_resource type="Script" path="res://rooster.gd" id="1_2di0l"]
+
+[sub_resource type="GDScript" id="GDScript_d7atf"]
+
+[sub_resource type="DragonBonesFactory" id="DragonBonesFactory_5ddrr"]
+dragon_bones_ske_file_list = PackedStringArray("res://Rooster_Ani_ske.json")
+texture_atlas_json_file_list = PackedStringArray("res://Rooster_Ani_tex.json")
+resource_local_to_scene = true
+script = SubResource("GDScript_d7atf")
+
+[node name="rooster" type="Node2D"]
+position = Vector2(509, 24)
+script = ExtResource("1_2di0l")
+
+[node name="DragonBones" type="DragonBones" parent="."]
+factory = SubResource("DragonBonesFactory_5ddrr")
+animation_callback_mode_process = 0
+armature_settings = {
+"current_animation": "[none]",
+"sub_armatures": {},
+"use_parent_material": true
+}
+position = Vector2(301, 271)
+
+[node name="GUI" type="Node" parent="."]
+
+[node name="SlotsList" type="ItemList" parent="GUI"]
+unique_name_in_owner = true
+offset_left = 25.0
+offset_top = 282.0
+offset_right = 267.0
+offset_bottom = 497.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationList" type="ItemList" parent="GUI"]
+unique_name_in_owner = true
+offset_left = 23.0
+offset_top = 31.0
+offset_right = 265.0
+offset_bottom = 246.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SlotSwap" type="Button" parent="GUI"]
+unique_name_in_owner = true
+offset_left = 26.0
+offset_top = 508.0
+offset_right = 109.0
+offset_bottom = 554.0
+disabled = true
+text = "swap slot"
+metadata/_edit_use_anchors_ = true
+
+[node name="SlotModifier" type="ColorPickerButton" parent="GUI"]
+unique_name_in_owner = true
+offset_left = 120.0
+offset_top = 509.0
+offset_right = 192.0
+offset_bottom = 553.0
+color = Color(1, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="hints" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="hints"]
+offset_left = 22.0
+offset_top = 7.0
+offset_right = 111.0
+offset_bottom = 30.0
+text = "Animations"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="hints"]
+offset_left = 26.0
+offset_top = 257.0
+offset_right = 73.0
+offset_bottom = 280.0
+text = "Slots"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="hints"]
+offset_left = 123.0
+offset_top = 557.0
+offset_right = 297.0
+offset_bottom = 606.0
+text = "slot color modifier
+(change alpha opacity)"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="hints"]
+offset_left = 19.0
+offset_top = 617.0
+offset_right = 336.0
+offset_bottom = 640.0
+text = "select tail_slot to enable the swap button"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="item_selected" from="GUI/SlotsList" to="." method="_on_slots_list_item_selected"]
+[connection signal="item_selected" from="GUI/AnimationList" to="." method="_on_animation_list_item_selected"]
+[connection signal="pressed" from="GUI/SlotSwap" to="." method="_on_slot_swap_pressed"]
+[connection signal="color_changed" from="GUI/SlotModifier" to="." method="_on_slot_modifier_color_changed"]
