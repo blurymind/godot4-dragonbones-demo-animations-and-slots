@@ -1,5 +1,6 @@
 # godot4-dragonbones-demo-animations-and-slots
 A small demo project i did while exploring godot's dragonbones addon
+![image](https://github.com/user-attachments/assets/9c82adf0-bc22-4ebe-82eb-2681ec632093)
 
 
 To try it out, clone this project, open it in Godot, open assetlib and install Godot-DragonBones (https://github.com/Daylily-Zeleen/Godot-DragonBones)
